@@ -3,7 +3,7 @@ import { PassportStrategy } from '@nestjs/passport'
 import { ExtractJwt, Strategy } from 'passport-jwt'
 import { z } from 'zod'
 
-import { Env } from '../env'
+import { Env } from '@/env'
 import { Injectable } from '@nestjs/common'
 
 const tokenPayloadSchema = z.object({
