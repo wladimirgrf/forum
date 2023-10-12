@@ -5,7 +5,7 @@ import request from 'supertest'
 import { hash } from 'bcryptjs'
 
 import { AppModule } from '@/infra/app.module'
-import { PrismaService } from '@/infra/prisma/prisma.service'
+import { PrismaService } from '@/infra/database/prisma/prisma.service'
 
 describe('Create question (E2E)', () => {
   let app: INestApplication
