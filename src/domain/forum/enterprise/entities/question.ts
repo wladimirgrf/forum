@@ -15,7 +15,7 @@ export interface QuestionProps {
   createdAt: Date
   updatedAt?: Date | null
   authorId: UniqueEntityID
-  bestAnswerId?: UniqueEntityID
+  bestAnswerId?: UniqueEntityID | null
   attachments: QuestionAttachmentList
 }
 
@@ -84,11 +84,11 @@ export class Question extends AggregateRoot<QuestionProps> {
     return this.props.authorId
   }
 
-  get bestAnswerId(): UniqueEntityID | undefined {
+  get bestAnswerId(): UniqueEntityID | undefined | null {
     return this.props.bestAnswerId
   }
 
-  set bestAnswerId(bestAnswerId: UniqueEntityID) {
+  set bestAnswerId(bestAnswerId: UniqueEntityID | undefined | null) {
     if (bestAnswerId && bestAnswerId !== this.props.bestAnswerId) {
       this.addDomainEvent(new QuestionBestAnswerChosenEvent(this, bestAnswerId))
     }
