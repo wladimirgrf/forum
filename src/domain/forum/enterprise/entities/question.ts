@@ -13,7 +13,7 @@ export interface QuestionProps {
   content: string
   slug: Slug
   createdAt: Date
-  updatedAt?: Date
+  updatedAt?: Date | null
   authorId: UniqueEntityID
   bestAnswerId?: UniqueEntityID
   attachments: QuestionAttachmentList
@@ -68,7 +68,7 @@ export class Question extends AggregateRoot<QuestionProps> {
     return this.props.createdAt
   }
 
-  get updatedAt(): Date | undefined {
+  get updatedAt(): Date | undefined | null {
     return this.props.updatedAt
   }
 
