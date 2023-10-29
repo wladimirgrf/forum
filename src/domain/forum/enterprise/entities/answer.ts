@@ -7,7 +7,7 @@ import { AnswerCreatedEvent } from '../events/answer-created-event'
 export interface AnswerProps {
   content: string
   createdAt: Date
-  updatedAt?: Date
+  updatedAt?: Date | null
   authorId: UniqueEntityID
   questionId: UniqueEntityID
   attachments: AnswerAttachmentList
@@ -53,7 +53,7 @@ export class Answer extends AggregateRoot<AnswerProps> {
     return this.props.createdAt
   }
 
-  get updatedAt(): Date | undefined {
+  get updatedAt(): Date | undefined | null {
     return this.props.updatedAt
   }
 
