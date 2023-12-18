@@ -11,9 +11,9 @@ export class InMemoryQuestionsRepository implements QuestionsRepository {
   public items: Question[] = []
 
   constructor(
-    private questionAttachmentsRepository: InMemoryQuestionAttachmentsRepository,
-    private attachmentsRepository: InMemoryAttachmentsRepository,
     private studentsRepository: InMemoryStudentsRepository,
+    private attachmentsRepository: InMemoryAttachmentsRepository,
+    private questionAttachmentsRepository: InMemoryQuestionAttachmentsRepository,
   ) {}
 
   async findById(id: string) {
