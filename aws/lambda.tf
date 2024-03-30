@@ -46,6 +46,6 @@ data "archive_file" "lambda_file" {
   output_path = "../lambda.zip"
 }
 
-resource "aws_cloudwatch_log_group" "lambda_cloudwatch" {
+resource "aws_cloudwatch_log_group" "lambda_log_group" {
   name = "/aws/lambda/${aws_lambda_function.lambda_function.function_name}"
 }
