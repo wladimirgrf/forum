@@ -10,8 +10,8 @@ resource "aws_lambda_function" "lambda_function" {
 
   environment {
     variables = {
-      JWT_PRIVATE_KEY = tls_private_key.app_key.private_key_pem
-      JWT_PUBLIC_KEY  = tls_private_key.app_key.public_key_pem
+      JWT_PRIVATE_KEY = base64encode(tls_private_key.app_key.private_key_pem)
+      JWT_PUBLIC_KEY  = base64encode(tls_private_key.app_key.public_key_pem)
 
       AWS_BUCKET_NAME = aws_s3_bucket.app_bucket.bucket
 
