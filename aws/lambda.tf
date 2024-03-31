@@ -2,7 +2,7 @@ resource "aws_lambda_function" "lambda_function" {
   function_name = "forum-lambda"
   publish       = true
 
-  handler = "index.handler"
+  handler = "main.handler"
   runtime = "nodejs20.x"
 
   timeout     = 10
@@ -35,7 +35,10 @@ resource "null_resource" "lambda_build" {
   }
 
   provisioner "local-exec" {
-    command = "npm run build"
+    command = <<-EOT
+      npm ci
+      npm run build
+    EOT
   }
 }
 

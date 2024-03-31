@@ -30,7 +30,7 @@ lerna-debug.log*
 *.lock.hcl
 .tfvars
 .terraform
+*.zip
 
 # Env
 .env
-.env.test
