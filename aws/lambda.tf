@@ -13,7 +13,7 @@ resource "aws_lambda_function" "lambda_function" {
       JWT_PRIVATE_KEY = tls_private_key.app_key.private_key_pem
       JWT_PUBLIC_KEY  = tls_private_key.app_key.public_key_pem
 
-      AWS_BUCKET_NAME = aws_s3_bucket.bucket_app_files.bucket
+      AWS_BUCKET_NAME = aws_s3_bucket.app_bucket.bucket
 
       REDIS_HOST = aws_elasticache_cluster.cluster_redis.cache_nodes[0].address
       REDIS_PORT = aws_elasticache_cluster.cluster_redis.cache_nodes[0].port
