@@ -1,6 +1,6 @@
 import { Server } from 'node:http'
 import { NestFactory } from '@nestjs/core'
-import serverlessExpress from 'aws-serverless-express'
+import * as serverlessExpress from 'aws-serverless-express'
 import { Context, Handler, APIGatewayProxyEvent } from 'aws-lambda'
 
 import { AppModule } from './app.module'
