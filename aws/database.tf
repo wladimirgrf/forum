@@ -35,6 +35,8 @@ resource "aws_db_subnet_group" "subnet_group_rds" {
 resource "aws_security_group" "security_group_postgres" {
   name = "postgres-security-group"
 
+  vpc_id = aws_vpc.vpc_private.id
+
   ingress {
     from_port = 5432
     to_port   = 5432
@@ -96,9 +98,8 @@ resource "null_resource" "migration_build" {
 
   provisioner "local-exec" {
     command = <<-EOT
-      cd ./aws/migrations
-      npm ci
-      npm run build
+      npm ci --prefix ./migrations
+      npm run build --prefix ./migrations
     EOT
   }
 }
@@ -108,6 +109,12 @@ data "archive_file" "migration_file" {
   type        = "zip"
   source_dir  = "./migrations/dist"
   output_path = "./migrations/lambda.zip"
+}
+
+resource "aws_lambda_invocation" "migration_run" {
+  function_name = aws_lambda_function.migration_function.function_name
+
+  input = jsonencode({})
 }
 
 resource "aws_cloudwatch_log_group" "migration_log_group" {

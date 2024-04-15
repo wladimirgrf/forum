@@ -24,6 +24,8 @@ resource "aws_elasticache_subnet_group" "subnet_group_elasticache" {
 resource "aws_security_group" "security_group_redis" {
   name = "redis-security-group"
 
+  vpc_id = aws_vpc.vpc_private.id
+
   ingress {
     from_port = 6379
     to_port   = 6379

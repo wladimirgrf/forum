@@ -31,6 +31,11 @@ resource "aws_iam_policy" "iam_policy" {
         Action = [
           "logs:CreateLogStream",
           "logs:PutLogEvents",
+          "ec2:DescribeNetworkInterfaces",
+          "ec2:CreateNetworkInterface",
+          "ec2:DeleteNetworkInterface",
+          "ec2:DescribeInstances",
+          "ec2:AttachNetworkInterface",
           "s3:PutObject"
         ]
       },
