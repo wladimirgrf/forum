@@ -1,7 +1,6 @@
-const { PrismaClient } = require('@prisma/client')
+const { execSync } = require('node:child_process');
 
-const prisma = new PrismaClient()
 
 export async function handler() {
-  await prisma.migrate()
+  execSync('npm run start');
 }

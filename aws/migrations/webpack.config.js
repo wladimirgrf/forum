@@ -18,11 +18,12 @@ module.exports = {
   plugins: [
     new CopyPlugin({
       patterns: [
-        {
-          from: '../../node_modules/.prisma/client/libquery_engine-rhel-openssl-3.0.x.so.node',
-          to: '.',
-        },
-        { from: '../../node_modules/.prisma/client/schema.prisma', to: '.' },
+        { from: '../../prisma', to: 'prisma' },
+        { from: '../../node_modules/.prisma', to: 'node_modules/.prisma' },
+        { from: './node_modules/@prisma', to: 'node_modules/@prisma' },
+        { from: './node_modules/prisma', to: 'node_modules/prisma' },
+        { from: './node_modules/.bin/prisma', to: 'node_modules/.bin/prisma' },
+        { from: './package.json', to: '.' },
       ],
     }),
   ],

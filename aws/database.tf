@@ -61,7 +61,7 @@ resource "aws_db_parameter_group" "parameter_group_postgres" {
 }
 
 resource "aws_lambda_function" "migration_function" {
-  function_name = "migrations-lambda"
+  function_name = "forum-migrations"
   handler       = "main.handler"
   runtime       = "nodejs20.x"
 
@@ -98,7 +98,7 @@ resource "null_resource" "migration_build" {
 
   provisioner "local-exec" {
     command = <<-EOT
-      npm ci --prefix ./migrations
+      npm i --prefix ./migrations
       npm run build --prefix ./migrations
     EOT
   }

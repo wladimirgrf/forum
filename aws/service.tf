@@ -1,5 +1,5 @@
 resource "aws_lambda_function" "service_function" {
-  function_name = "forum-lambda"
+  function_name = "forum-service"
   handler       = "main.handler"
   runtime       = "nodejs20.x"
 
@@ -44,7 +44,7 @@ resource "null_resource" "service_build" {
 
   provisioner "local-exec" {
     command = <<-EOT
-      npm ci
+      npm i
       npm run build
     EOT
   }
