@@ -66,7 +66,7 @@ resource "aws_lambda_function" "migration_function" {
   runtime       = "nodejs20.x"
 
   timeout     = 10
-  memory_size = 512
+  memory_size = 1024
 
   role             = aws_iam_role.iam_role.arn
   filename         = data.archive_file.migration_file.output_path
@@ -98,6 +98,8 @@ resource "null_resource" "migration_build" {
 
   provisioner "local-exec" {
     command = <<-EOT
+      npm i
+      npx prisma generate
       npm i --prefix ./migrations
       npm run build --prefix ./migrations
     EOT
@@ -115,6 +117,10 @@ resource "aws_lambda_invocation" "migration_run" {
   function_name = aws_lambda_function.migration_function.function_name
 
   input = jsonencode({})
+
+  triggers = {
+    always_run = timestamp()
+  }
 }
 
 resource "aws_cloudwatch_log_group" "migration_log_group" {

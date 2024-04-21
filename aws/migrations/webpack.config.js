@@ -1,30 +1,27 @@
-const path = require('node:path')
-const CopyPlugin = require('copy-webpack-plugin')
+const path = require("node:path");
+const CopyPlugin = require("copy-webpack-plugin");
 
 module.exports = {
-  mode: 'production',
-  entry: './src/main.js',
+  mode: "production",
+  entry: "./src/main.js",
   resolve: {
-    extensions: ['.js'],
+    extensions: [".js"],
   },
   output: {
-    path: path.resolve(__dirname, 'dist'),
-    filename: 'main.js',
-    library: 'handler',
-    libraryTarget: 'umd',
-    globalObject: 'this',
+    path: path.resolve(__dirname, "dist"),
+    filename: "main.js",
+    library: "handler",
+    libraryTarget: "umd",
+    globalObject: "this",
   },
-  target: 'node',
+  target: "node",
   plugins: [
     new CopyPlugin({
       patterns: [
-        { from: '../../prisma', to: 'prisma' },
-        { from: '../../node_modules/.prisma', to: 'node_modules/.prisma' },
-        { from: './node_modules/@prisma', to: 'node_modules/@prisma' },
-        { from: './node_modules/prisma', to: 'node_modules/prisma' },
-        { from: './node_modules/.bin/prisma', to: 'node_modules/.bin/prisma' },
-        { from: './package.json', to: '.' },
+        { from: "../../prisma", to: "prisma" },
+        { from: "../../node_modules/@prisma", to: "node_modules/@prisma" },
+        { from: "../../node_modules/prisma", to: "node_modules/prisma" },
       ],
     }),
   ],
-}
+};

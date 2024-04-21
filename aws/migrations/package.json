@@ -4,12 +4,7 @@
   "license": "UNLICENSED",
   "main": "main.js",
   "scripts": {
-    "build": "webpack",
-    "start": "prisma migrate deploy"
-  },
-  "dependencies": {
-    "@prisma/client": "^5.12.1",
-    "prisma": "^5.12.1"
+    "build": "webpack"
   },
   "devDependencies": {
     "copy-webpack-plugin": "^12.0.2",
