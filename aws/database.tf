@@ -98,8 +98,7 @@ resource "null_resource" "migration_build" {
 
   provisioner "local-exec" {
     command = <<-EOT
-      npm i
-      npx prisma generate
+      npm i --prefix ..
       npm i --prefix ./migrations
       npm run build --prefix ./migrations
     EOT

@@ -44,8 +44,8 @@ resource "null_resource" "service_build" {
 
   provisioner "local-exec" {
     command = <<-EOT
-      npm i
-      npm run build
+      npm i --prefix ..
+      npm run build --prefix ..
     EOT
   }
 }
