@@ -58,6 +58,8 @@
     "@types/node": "^20.11.16",
     "@types/passport-jwt": "^3.0.10",
     "@types/supertest": "^2.0.14",
+    "@types/swagger-ui-express": "^4.1.6",
+    "@types/yamljs": "^0.2.34",
     "@vitest/coverage-v8": "^0.34.6",
     "copy-webpack-plugin": "^12.0.2",
     "dotenv-cli": "^7.4.1",
@@ -65,6 +67,7 @@
     "prisma": "^5.12.1",
     "source-map-support": "^0.5.21",
     "supertest": "^6.3.4",
+    "swagger-ui-express": "^5.0.0",
     "ts-loader": "^9.5.1",
     "ts-node": "^10.9.2",
     "tsconfig-paths": "^4.2.0",
@@ -72,6 +75,7 @@
     "unplugin-swc": "^1.4.4",
     "vite-tsconfig-paths": "^4.3.2",
     "vitest": "^0.34.6",
-    "webpack": "^5.91.0"
+    "webpack": "^5.91.0",
+    "yamljs": "^0.3.0"
   }
 }
