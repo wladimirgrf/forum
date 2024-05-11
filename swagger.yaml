@@ -25,25 +25,29 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/Session'
-  /notifications/{notificationId}/read:
-    patch:
+
+  /accounts:
+    post:
       tags: 
-        - Notifications
-      summary: Mark a notification as read
-      operationId: readNotification
-      parameters:
-        - name: notificationId
-          in: path
-          required: true
-          schema:
-            type: string
+        - Accounts
+      summary: Create a new user account
+      operationId: createAccount
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/CreateAccount'
       responses:
-        '204':
-          description: Notification marked as read successfully
+        '201':
+          description: Account created successfully
+
   /attachments:
     post:
       tags: 
         - Attachments
+      security:
+        - bearerAuth: []
       summary: Upload an attachment
       operationId: uploadAttachment
       requestBody:
@@ -63,26 +67,31 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/AttachmentUpload'
-  /accounts:
-    post:
+
+  /notifications/{notificationId}/read:
+    patch:
       tags: 
-        - Accounts
-      summary: Create a new user account
-      operationId: createAccount
-      requestBody:
-        required: true
-        content:
-          application/json:
-            schema:
-              $ref: '#/components/schemas/CreateAccount'
+        - Notifications
+      security:
+        - bearerAuth: []
+      summary: Mark a notification as read
+      operationId: readNotification
+      parameters:
+        - name: notificationId
+          in: path
+          required: true
+          schema:
+            type: string
       responses:
-        '201':
-          description: Account created successfully
+        '204':
+          description: Notification marked as read successfully
 
   /answers/{id}:
     delete:
       tags:
         - Answers
+      security:
+        - bearerAuth: []
       summary: Delete an answer
       operationId: deleteAnswer
       parameters:
@@ -97,6 +106,8 @@ paths:
     put:
       tags:
         - Answers
+      security:
+        - bearerAuth: []
       summary: Edit an existing answer
       operationId: editAnswer
       parameters:
@@ -118,6 +129,8 @@ paths:
     patch:
       tags:
         - Answers
+      security:
+        - bearerAuth: []
       summary: Choose an answer as the best for a question
       operationId: chooseQuestionBestAnswer
       parameters:
@@ -133,6 +146,8 @@ paths:
     get:
       tags:
         - Answers
+      security:
+        - bearerAuth: []
       summary: Fetch comments on an answer
       operationId: fetchAnswerComments
       parameters:
@@ -159,6 +174,8 @@ paths:
     post:
       tags:
         - Answers
+      security:
+        - bearerAuth: []
       summary: Comment on an answer
       operationId: commentOnAnswer
       parameters:
@@ -180,6 +197,8 @@ paths:
     delete:
       tags: 
         - Answers
+      security:
+        - bearerAuth: []
       summary: Delete a comment on an answer
       operationId: deleteAnswerComment
       parameters:
@@ -196,6 +215,8 @@ paths:
     get:
       tags:
         - Questions
+      security:
+        - bearerAuth: []
       summary: Fetch recent questions
       operationId: fetchRecentQuestions
       parameters:
@@ -217,6 +238,8 @@ paths:
     post:
       tags:
         - Questions
+      security:
+        - bearerAuth: []
       summary: Create a new question
       operationId: createQuestion
       requestBody:
@@ -232,6 +255,8 @@ paths:
     delete:
       tags:
         - Questions
+      security:
+        - bearerAuth: []
       summary: Delete a question
       operationId: deleteQuestion
       parameters:
@@ -246,6 +271,8 @@ paths:
     put:
       tags:
         - Questions
+      security:
+        - bearerAuth: []
       summary: Edit an existing question
       operationId: editQuestion
       parameters:
@@ -267,6 +294,8 @@ paths:
     get:
       tags:
         - Questions
+      security:
+        - bearerAuth: []
       summary: Get details of a question by slug
       operationId: getQuestionBySlug
       parameters:
@@ -286,6 +315,8 @@ paths:
     get:
       tags:
         - Questions
+      security:
+        - bearerAuth: []
       summary: Fetch answers to a question
       operationId: fetchQuestionAnswers
       parameters:
@@ -312,6 +343,8 @@ paths:
     post:
       tags:
         - Questions
+      security:
+        - bearerAuth: []
       summary: Submit an answer to a question
       operationId: answerQuestion
       parameters:
@@ -333,6 +366,8 @@ paths:
     get:
       tags:
         - Questions
+      security:
+        - bearerAuth: []
       summary: Fetch comments on a question
       operationId: fetchQuestionComments
       parameters:
@@ -359,6 +394,8 @@ paths:
     post:
       tags:
         - Questions
+      security:
+        - bearerAuth: []
       summary: Comment on a question
       operationId: commentOnQuestion
       parameters:
@@ -380,6 +417,8 @@ paths:
     delete:
       tags: 
         - Questions
+      security:
+        - bearerAuth: []
       summary: Delete a comment on a question
       operationId: deleteQuestionComment
       parameters:
@@ -393,6 +432,11 @@ paths:
           description: Comment deleted successfully
 
 components:
+  securitySchemes:
+    bearerAuth:
+      type: http
+      scheme: bearer
+      bearerFormat: JWT 
   schemas:
     AnswerQuestion:
       type: object
