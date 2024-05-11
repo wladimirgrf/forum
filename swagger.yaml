@@ -6,53 +6,6 @@ info:
 servers:
   - url: http://localhost:3333/
 paths:
-  /questions/{questionId}/answers:
-    get:
-      tags: 
-        - Questions
-      summary: Fetch answers to a question
-      operationId: fetchQuestionAnswers
-      parameters:
-        - name: questionId
-          in: path
-          required: true
-          schema:
-            type: string
-        - name: page
-          in: query
-          schema:
-            type: integer
-            default: 1
-            minimum: 1
-      responses:
-        '200':
-          description: Answers fetched successfully
-          content:
-            application/json:
-              schema:
-                type: array
-                items:
-                  $ref: '#/components/schemas/Answer'
-    post:
-      tags: 
-        - Questions
-      summary: Submit an answer to a question
-      operationId: answerQuestion
-      parameters:
-        - name: questionId
-          in: path
-          required: true
-          schema:
-            type: string
-      requestBody:
-        required: true
-        content:
-          application/json:
-            schema:
-              $ref: '#/components/schemas/AnswerQuestion'
-      responses:
-        '204':
-          description: Answer submitted successfully
   /sessions:
     post:
       tags: 
@@ -72,285 +25,6 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/Session'
-  /answers/{answerId}/choose-as-best:
-    patch:
-      tags: 
-        - Answers
-      summary: Choose an answer as the best for a question
-      operationId: chooseQuestionBestAnswer
-      parameters:
-        - name: answerId
-          in: path
-          required: true
-          schema:
-            type: string
-      responses:
-        '204':
-          description: Answer chosen as the best successfully
-  /answers/{answerId}/comments:
-    get:
-      tags: 
-        - Answers
-      summary: Fetch comments on an answer
-      operationId: fetchAnswerComments
-      parameters:
-        - name: answerId
-          in: path
-          required: true
-          schema:
-            type: string
-        - name: page
-          in: query
-          schema:
-            type: integer
-            default: 1
-            minimum: 1
-      responses:
-        '200':
-          description: Comments fetched successfully
-          content:
-            application/json:
-              schema:
-                type: array
-                items:
-                  $ref: '#/components/schemas/CommentWithAuthor'
-    post:
-      tags: 
-        - Answers
-      summary: Comment on an answer
-      operationId: commentOnAnswer
-      parameters:
-        - name: answerId
-          in: path
-          required: true
-          schema:
-            type: string
-      requestBody:
-        required: true
-        content:
-          application/json:
-            schema:
-              $ref: '#/components/schemas/CommentOnAnswer'
-      responses:
-        '204':
-          description: Comment submitted successfully
-  /questions/{questionId}/comments:
-    get:
-      tags: 
-        - Questions
-      summary: Fetch comments on a question
-      operationId: fetchQuestionComments
-      parameters:
-        - name: questionId
-          in: path
-          required: true
-          schema:
-            type: string
-        - name: page
-          in: query
-          schema:
-            type: integer
-            default: 1
-            minimum: 1
-      responses:
-        '200':
-          description: Comments fetched successfully
-          content:
-            application/json:
-              schema:
-                type: array
-                items:
-                  $ref: '#/components/schemas/CommentWithAuthor'
-    post:
-      tags: 
-        - Questions
-      summary: Comment on a question
-      operationId: commentOnQuestion
-      parameters:
-        - name: questionId
-          in: path
-          required: true
-          schema:
-            type: string
-      requestBody:
-        required: true
-        content:
-          application/json:
-            schema:
-              $ref: '#/components/schemas/CommentOnQuestion'
-      responses:
-        '204':
-          description: Comment submitted successfully
-  /accounts:
-    post:
-      tags: 
-        - Accounts
-      summary: Create a new user account
-      operationId: createAccount
-      requestBody:
-        required: true
-        content:
-          application/json:
-            schema:
-              $ref: '#/components/schemas/CreateAccount'
-      responses:
-        '201':
-          description: Account created successfully
-  /questions:
-    post:
-      tags: 
-        - Questions
-      summary: Create a new question
-      operationId: createQuestion
-      requestBody:
-        required: true
-        content:
-          application/json:
-            schema:
-              $ref: '#/components/schemas/CreateQuestion'
-      responses:
-        '204':
-          description: Question created successfully
-    get:
-      tags: 
-        - Questions
-      summary: Fetch recent questions
-      operationId: fetchRecentQuestions
-      parameters:
-        - name: page
-          in: query
-          schema:
-            type: integer
-            default: 1
-            minimum: 1
-      responses:
-        '200':
-          description: Questions fetched successfully
-          content:
-            application/json:
-              schema:
-                type: array
-                items:
-                  $ref: '#/components/schemas/Question'
-  /answers/comments/{id}:
-    delete:
-      tags: 
-        - Answers
-      summary: Delete a comment on an answer
-      operationId: deleteAnswerComment
-      parameters:
-        - name: id
-          in: path
-          required: true
-          schema:
-            type: string
-      responses:
-        '204':
-          description: Comment deleted successfully
-  /answers/{id}:
-    delete:
-      tags: 
-        - Answers
-      summary: Delete an answer
-      operationId: deleteAnswer
-      parameters:
-        - name: id
-          in: path
-          required: true
-          schema:
-            type: string
-      responses:
-        '204':
-          description: Answer deleted successfully
-    put:
-      tags: 
-        - Answers
-      summary: Edit an existing answer
-      operationId: editAnswer
-      parameters:
-        - name: id
-          in: path
-          required: true
-          schema:
-            type: string
-      requestBody:
-        required: true
-        content:
-          application/json:
-            schema:
-              $ref: '#/components/schemas/EditAnswer'
-      responses:
-        '204':
-          description: Answer edited successfully
-  /questions/comments/{id}:
-    delete:
-      tags: 
-        - Questions
-      summary: Delete a comment on a question
-      operationId: deleteQuestionComment
-      parameters:
-        - name: id
-          in: path
-          required: true
-          schema:
-            type: string
-      responses:
-        '204':
-          description: Comment deleted successfully
-  /questions/{id}:
-    delete:
-      tags: 
-        - Questions
-      summary: Delete a question
-      operationId: deleteQuestion
-      parameters:
-        - name: id
-          in: path
-          required: true
-          schema:
-            type: string
-      responses:
-        '204':
-          description: Question deleted successfully
-    put:
-      tags: 
-        - Questions
-      summary: Edit an existing question
-      operationId: editQuestion
-      parameters:
-        - name: id
-          in: path
-          required: true
-          schema:
-            type: string
-      requestBody:
-        required: true
-        content:
-          application/json:
-            schema:
-              $ref: '#/components/schemas/EditQuestion'
-      responses:
-        '204':
-          description: Question edited successfully
-  /questions/{slug}:
-    get:
-      tags: 
-        - Questions
-      summary: Get details of a question by slug
-      operationId: getQuestionBySlug
-      parameters:
-        - name: slug
-          in: path
-          required: true
-          schema:
-            type: string
-      responses:
-        '200':
-          description: Question details retrieved successfully
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/QuestionDetails'
   /notifications/{notificationId}/read:
     patch:
       tags: 
@@ -389,7 +63,335 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/AttachmentUpload'
-            
+  /accounts:
+    post:
+      tags: 
+        - Accounts
+      summary: Create a new user account
+      operationId: createAccount
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/CreateAccount'
+      responses:
+        '201':
+          description: Account created successfully
+
+  /answers/{id}:
+    delete:
+      tags:
+        - Answers
+      summary: Delete an answer
+      operationId: deleteAnswer
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: string
+      responses:
+        '204':
+          description: Answer deleted successfully
+    put:
+      tags:
+        - Answers
+      summary: Edit an existing answer
+      operationId: editAnswer
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: string
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/EditAnswer'
+      responses:
+        '204':
+          description: Answer edited successfully
+  /answers/{answerId}/choose-as-best:
+    patch:
+      tags:
+        - Answers
+      summary: Choose an answer as the best for a question
+      operationId: chooseQuestionBestAnswer
+      parameters:
+        - name: answerId
+          in: path
+          required: true
+          schema:
+            type: string
+      responses:
+        '204':
+          description: Answer chosen as the best successfully
+  /answers/{answerId}/comments:
+    get:
+      tags:
+        - Answers
+      summary: Fetch comments on an answer
+      operationId: fetchAnswerComments
+      parameters:
+        - name: answerId
+          in: path
+          required: true
+          schema:
+            type: string
+        - name: page
+          in: query
+          schema:
+            type: integer
+            default: 1
+            minimum: 1
+      responses:
+        '200':
+          description: Comments fetched successfully
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/CommentWithAuthor'
+    post:
+      tags:
+        - Answers
+      summary: Comment on an answer
+      operationId: commentOnAnswer
+      parameters:
+        - name: answerId
+          in: path
+          required: true
+          schema:
+            type: string
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/CommentOnAnswer'
+      responses:
+        '204':
+          description: Comment submitted successfully
+  /answers/comments/{id}:
+    delete:
+      tags: 
+        - Answers
+      summary: Delete a comment on an answer
+      operationId: deleteAnswerComment
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: string
+      responses:
+        '204':
+          description: Comment deleted successfully
+
+  /questions:
+    get:
+      tags:
+        - Questions
+      summary: Fetch recent questions
+      operationId: fetchRecentQuestions
+      parameters:
+        - name: page
+          in: query
+          schema:
+            type: integer
+            default: 1
+            minimum: 1
+      responses:
+        '200':
+          description: Questions fetched successfully
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Question'
+    post:
+      tags:
+        - Questions
+      summary: Create a new question
+      operationId: createQuestion
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/CreateQuestion'
+      responses:
+        '204':
+          description: Question created successfully
+  /questions/{id}:
+    delete:
+      tags:
+        - Questions
+      summary: Delete a question
+      operationId: deleteQuestion
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: string
+      responses:
+        '204':
+          description: Question deleted successfully
+    put:
+      tags:
+        - Questions
+      summary: Edit an existing question
+      operationId: editQuestion
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: string
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/EditQuestion'
+      responses:
+        '204':
+          description: Question edited successfully
+  /questions/{slug}:
+    get:
+      tags:
+        - Questions
+      summary: Get details of a question by slug
+      operationId: getQuestionBySlug
+      parameters:
+        - name: slug
+          in: path
+          required: true
+          schema:
+            type: string
+      responses:
+        '200':
+          description: Question details retrieved successfully
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/QuestionDetails'
+  /questions/{questionId}/answers:
+    get:
+      tags:
+        - Questions
+      summary: Fetch answers to a question
+      operationId: fetchQuestionAnswers
+      parameters:
+        - name: questionId
+          in: path
+          required: true
+          schema:
+            type: string
+        - name: page
+          in: query
+          schema:
+            type: integer
+            default: 1
+            minimum: 1
+      responses:
+        '200':
+          description: Answers fetched successfully
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Answer'
+    post:
+      tags:
+        - Questions
+      summary: Submit an answer to a question
+      operationId: answerQuestion
+      parameters:
+        - name: questionId
+          in: path
+          required: true
+          schema:
+            type: string
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/AnswerQuestion'
+      responses:
+        '204':
+          description: Answer submitted successfully
+  /questions/{questionId}/comments:
+    get:
+      tags:
+        - Questions
+      summary: Fetch comments on a question
+      operationId: fetchQuestionComments
+      parameters:
+        - name: questionId
+          in: path
+          required: true
+          schema:
+            type: string
+        - name: page
+          in: query
+          schema:
+            type: integer
+            default: 1
+            minimum: 1
+      responses:
+        '200':
+          description: Comments fetched successfully
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/CommentWithAuthor'
+    post:
+      tags:
+        - Questions
+      summary: Comment on a question
+      operationId: commentOnQuestion
+      parameters:
+        - name: questionId
+          in: path
+          required: true
+          schema:
+            type: string
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/CommentOnQuestion'
+      responses:
+        '204':
+          description: Comment submitted successfully
+  /questions/comments/{id}:
+    delete:
+      tags: 
+        - Questions
+      summary: Delete a comment on a question
+      operationId: deleteQuestionComment
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: string
+      responses:
+        '204':
+          description: Comment deleted successfully
+
 components:
   schemas:
     AnswerQuestion:
@@ -397,83 +399,105 @@ components:
       properties:
         content:
           type: string
+          example: "Here is the answer to the question you asked about advanced mathematics."
         attachments:
           type: array
           items:
             type: string
+            example: "3fa85f64-5717-4562-b3fc-2c963f66afa6"
     AuthenticateUser:
       type: object
       properties:
         email:
           type: string
+          example: "user@example.com"
         password:
           type: string
+          example: "securepassword123"
     Session:
       type: object
       properties:
         access_token:
           type: string
+          example: "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiIxMjM0NTY3ODkwIiwibmFtZSI6IkpvaG4gRG9lIiwiaWF0IjoxNTE2MjM5MDIyfQ.SflKxwRJSMeKKF2QT4fwpMeJf36POk6yJV_adQssw5c"
     CommentOnAnswer:
       type: object
       properties:
         content:
           type: string
+          example: "This is a very insightful answer, thanks for sharing!"
     CommentOnQuestion:
       type: object
       properties:
         content:
           type: string
+          example: "Can you provide more details about your question on quantum mechanics?"
     CreateAccount:
       type: object
       properties:
         name:
           type: string
+          example: "Jane Doe"
         email:
           type: string
+          example: "jane.doe@example.com"
         password:
           type: string
+          example: "verysecurepassword"
     CreateQuestion:
       type: object
       properties:
         title:
           type: string
+          example: "How do quantum computers work?"
         content:
           type: string
+          example: "I'm curious about the working principles of quantum computers. Can someone explain?"
         attachments:
           type: array
           items:
             type: string
+            example: "b81ffd23-3f6b-4819-8de6-55a3b9d6e313"
     EditAnswer:
       type: object
       properties:
         content:
           type: string
+          example: "I've updated the answer with the latest research findings on the topic."
         attachments:
           type: array
           items:
             type: string
+            example: "fc7768d8-09fe-4395-bc5d-ed93bdd07b39"
     EditQuestion:
       type: object
       properties:
         title:
           type: string
+          example: "Updated Question Title: The Current State of Quantum Computing"
         content:
           type: string
+          example: "I've refined the question to focus more on current applications rather than just the theory."
         attachments:
           type: array
           items:
             type: string
+            example: "29b2a3d5-ce7b-4467-adc3-6020f5e8cac1"
     CommentWithAuthor:
       type: object
       properties:
         commentId:
           type: string
+          example: "d1d3f7b7-55d9-4d84-940b-1d9dcb4ad058"
         content:
           type: string
+          example: "Thank you for this detailed comment!"
         createdAt:
           type: string
+          example: "2022-01-01T12:00:00Z"
         updatedAt:
           type: string
+          example: "2022-01-02T12:00:00Z"
         author:
           $ref: '#/components/schemas/Author'
     Answer:
@@ -481,41 +505,55 @@ components:
       properties:
         id:
           type: string
+          example: "ff24cc6b-eaac-41b0-9df7-6eeb9586f4fd"
         content:
           type: string
+          example: "Here's a detailed explanation on how to solve this complex algebra problem..."
         createdAt:
           type: string
+          example: "2022-01-01T12:00:00Z"
         updatedAt:
           type: string
+          example: "2022-01-02T12:00:00Z"
     Author:
       type: object
       properties:
         id:
           type: string
+          example: "a1234567-e89b-12d3-a456-426614174000"
         name:
           type: string
+          example: "Alice Johnson"
     AttachmentUpload:
       type: object
       properties:
         attachmentId:
           type: string
+          example: "5e12a7c8-15f9-461b-9b1b-7abcb63a3bcc"
     QuestionDetails:
       type: object
       properties:
         questionId:
           type: string
+          example: "db2cb9d2-0d4e-4a29-9437-68c4185b85a9"
         title:
           type: string
+          example: "In-depth Question: The Implications of AI in Modern Healthcare"
         slug:
           type: string
+          example: "ai-in-healthcare"
         content:
           type: string
+          example: "Let's discuss how AI is currently being applied in the healthcare industry and its future implications."
         bestAnswerId:
           type: string
+          example: "e4a2b807-ef97-46f2-97c9-5f6f7b3bfe23"
         createdAt:
           type: string
+          example: "2022-01-01T12:00:00Z"
         updatedAt:
           type: string
+          example: "2022-01-02T12:00:00Z"
         author:
           $ref: '#/components/schemas/Author'
         attachments:
@@ -527,23 +565,32 @@ components:
       properties:
         id:
           type: string
+          example: "1d2f89ff-3522-4e13-807c-3fbff234ffa2"
         title:
           type: string
+          example: "Quantum Mechanics Research Paper"
         url:
           type: string
+          example: "http://example.com/resources/quantum-mechanics.pdf"
     Question:
       type: object
       properties:
         id:
           type: string
+          example: "99a8b8b4-388b-424f-91f8-4c9b92332513"
         title:
           type: string
+          example: "Latest Trends in Artificial Intelligence"
         slug:
           type: string
+          example: "latest-ai-trends"
         bestAnswerId:
           type: string
           nullable: true
+          example: "c3d2e6f1-7267-4e53-ba14-4950e88a0f11"
         createdAt:
           type: string
+          example: "2022-01-01T12:00:00Z"
         updatedAt:
           type: string
+          example: "2022-01-02T12:00:00Z"
