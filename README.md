@@ -49,9 +49,6 @@ $ cp .env.example .env
 aws configure
 ```
 
->[!IMPORTANT]
-> [Managing access keys for IAM users](https://docs.aws.amazon.com/IAM/latest/UserGuide/id_credentials_access-keys.html)
-
 ### 🖥️ Local Environment
 
 **Run the containers**
@@ -80,6 +77,9 @@ We need to set up the resources for Terraform state synchronization.
 aws s3api create-bucket --bucket forum-tf-state --region us-east-1
 ```
 
+>[!CAUTION]
+>S3 requires unique names for buckets.
+
 **Create the DynamoDB table for state lock**
 ```bash
 aws dynamodb create-table \
@@ -89,9 +89,6 @@ aws dynamodb create-table \
     --provisioned-throughput ReadCapacityUnits=1,WriteCapacityUnits=1 \
     --region us-east-1
 ```
-
->[!CAUTION]
->S3 requires unique names for buckets. Therefore, when deploying this project, you need to ensure the names are not already in use.
 
 **Providers Initialization**
 ```bash
@@ -110,3 +107,34 @@ npm run infra:up
 
 >[!NOTE]
 >During the planning or deployment process, Terraform will request two important variables for setting up the resources: the username and password for the database access. These details will be used to securely connect the application to the database. The entire deployment process takes about 10 minutes.
+
+## 🤝 Contributing
+
+**Fork the repository and clone your fork**
+
+```bash
+$ git clone fork-url && cd rentx
+```
+
+**Create a branch for your edits**
+```bash
+$ git checkout -b new-feature
+```
+
+**Make the commit with your changes**
+```bash
+$ git commit -m 'feat: New feature'
+```
+
+**Send the code to your remote branch**
+```bash
+$ git push origin new-feature
+```
+
+Create a pull request with your version. <br>
+After your pull request is merged, you can delete your branch.
+
+
+## 📝 License
+
+This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details.
