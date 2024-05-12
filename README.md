@@ -23,29 +23,47 @@ This project is a RESTful API designed for forum management. The use cases are c
 
 ## ▶️ Getting started
 
-**Requirements**
+### ✅ Requirements
 
-- 🔰 [https://nodejs.org/en/](https://nodejs.org/en/)
-- 🐳 [https://docs.docker.com/compose/install/](https://docs.docker.com/compose/install/)
-- 🌏 [https://developer.hashicorp.com/terraform/tutorials/aws-get-started/install-cli](https://developer.hashicorp.com/terraform/tutorials/aws-get-started/install-cli)
+#### ☁️ AWS cli
+The resources for this project are deployed on AWS, so installing the CLI is crucial for the initial setup (_key resources and Terraform state synchronization_): 
 
-**Clone the project**
+[Install or update to the latest version of the AWS CLI - AWS Command Line Interface](https://docs.aws.amazon.com/cli/latest/userguide/getting-started-install.html)
+
+#### 🔰 Node.js
+To compile or run the application, it is essential to have Node.js installed: 
+
+[Node.js — Download Node.js®](https://nodejs.org/en/download)
+
+#### 🐳 Docker
+I use Docker Compose to launch the required instances for local and testing environments: 
+
+[Install Docker Engine | Docker Docs](https://docs.docker.com/engine/install)
+
+
+#### 🌏 Terraform
+In this project, I used the Infrastructure as Code (_IaC_) approach. The framework chosen to handle everything is Terraform: 
+
+[Install Terraform | HashiCorp Developer](https://developer.hashicorp.com/terraform/tutorials/aws-get-started/install-cli)
+
+#### 🛠️ Setup
+
+##### Clone the project
 ```bash
 $ git clone https://github.com/wladimirgrf/forum.git && cd forum
 ```
 
-**Install the Project dependencies**
+##### Install the Project dependencies
 ```bash
 $ npm install
 ```
 
-**Environment configuration**
+##### Environment Variables
 ```bash
-# Make a copy of '.env.example'
-# Fill both files with YOUR environment variables.
 $ cp .env.example .env
-$ cp .env.example .env.test
 ```
+
+### 🖥️ Local Environment
 
 **Run the containers**
 ```bash
@@ -64,3 +82,13 @@ $ npm run start:dev
 >[!NOTE]
 >The API will be launched at `http://localhost:3333/` <br>
 >Documentation available at `http://localhost:3333/docs`
+
+### 🚀 Deployment
+
+
+Next, we need to set up the resources for Terraform state synchronization.
+
+**Create the Bucket**
+```bash
+aws s3api create-bucket --bucket forum-tf-state --region us-east-1
+```
