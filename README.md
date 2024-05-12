@@ -23,45 +23,34 @@ This project is a RESTful API designed for forum management. The use cases are c
 
 ## ▶️ Getting started
 
-### ✅ Requirements
+**Requirements**
+- [Node.js - Official Node.js® download page](https://nodejs.org/en/download)
+- [Docker Engine - Official Docker installation guide](https://docs.docker.com/engine/install)
+- [AWS CLI - Official AWS CLI installation page](https://docs.aws.amazon.com/cli/latest/userguide/getting-started-install.html)
+- [Terraform - Official Terraform installation guide](https://developer.hashicorp.com/terraform/tutorials/aws-get-started/install-cli)
 
-#### ☁️ AWS cli
-The resources for this project are deployed on AWS, so installing the CLI is crucial for the initial setup (_key resources and Terraform state synchronization_): 
-
-[Install or update to the latest version of the AWS CLI - AWS Command Line Interface](https://docs.aws.amazon.com/cli/latest/userguide/getting-started-install.html)
-
-#### 🔰 Node.js
-To compile or run the application, it is essential to have Node.js installed: 
-
-[Node.js — Download Node.js®](https://nodejs.org/en/download)
-
-#### 🐳 Docker
-I use Docker Compose to launch the required instances for local and testing environments: 
-
-[Install Docker Engine | Docker Docs](https://docs.docker.com/engine/install)
-
-
-#### 🌏 Terraform
-In this project, I used the Infrastructure as Code (_IaC_) approach. The framework chosen to handle everything is Terraform: 
-
-[Install Terraform | HashiCorp Developer](https://developer.hashicorp.com/terraform/tutorials/aws-get-started/install-cli)
-
-#### 🛠️ Setup
-
-##### Clone the project
+**Clone the project**
 ```bash
 $ git clone https://github.com/wladimirgrf/forum.git && cd forum
 ```
 
-##### Install the Project dependencies
+**Install the Project dependencies**
 ```bash
 $ npm install
 ```
 
-##### Environment Variables
+**Environment Variables**
 ```bash
 $ cp .env.example .env
 ```
+
+**Set access credentials**
+```bash
+aws configure
+```
+
+>[!IMPORTANT]
+> [Managing access keys for IAM users](https://docs.aws.amazon.com/IAM/latest/UserGuide/id_credentials_access-keys.html)
 
 ### 🖥️ Local Environment
 
@@ -84,11 +73,40 @@ $ npm run start:dev
 >Documentation available at `http://localhost:3333/docs`
 
 ### 🚀 Deployment
-
-
-Next, we need to set up the resources for Terraform state synchronization.
+We need to set up the resources for Terraform state synchronization.
 
 **Create the Bucket**
 ```bash
 aws s3api create-bucket --bucket forum-tf-state --region us-east-1
 ```
+
+**Create the DynamoDB table for state lock**
+```bash
+aws dynamodb create-table \
+    --table-name forum-tf-state-lock \
+    --attribute-definitions AttributeName=LockID,AttributeType=S \
+    --key-schema AttributeName=LockID,KeyType=HASH \
+    --provisioned-throughput ReadCapacityUnits=1,WriteCapacityUnits=1 \
+    --region us-east-1
+```
+
+>[!CAUTION]
+>S3 requires unique names for buckets. Therefore, when deploying this project, you need to ensure the names are not already in use.
+
+**Providers Initialization**
+```bash
+npm run infra:prep
+```
+
+**(OPTIONAL) Check the Execution Plan**
+```bash
+npm run infra:plan
+```
+
+**Deploy the entire Infrastructure**
+```bash
+npm run infra:up
+```
+
+>[!NOTE]
+>During the planning or deployment process, Terraform will request two important variables for setting up the resources: the username and password for the database access. These details will be used to securely connect the application to the database. The entire deployment process takes about 10 minutes.
