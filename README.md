@@ -49,7 +49,7 @@ $ cp .env.example .env
 aws configure
 ```
 
-### 🖥️ Local Environment
+## 🖥️ Local Environment
 
 **Run the containers**
 ```bash
@@ -69,7 +69,7 @@ $ npm run start:dev
 >The API will be launched at `http://localhost:3333/` <br>
 >Documentation available at `http://localhost:3333/docs`
 
-### 🚀 Deployment
+## 🚀 Deployment
 We need to set up the resources for Terraform state synchronization.
 
 **Create the Bucket**
