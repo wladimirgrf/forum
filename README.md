@@ -106,7 +106,8 @@ npm run infra:up
 ```
 
 >[!NOTE]
->During the planning or deployment process, Terraform will request two important variables for setting up the resources: the username and password for the database access. These details will be used to securely connect the application to the database. The entire deployment process takes about 10 minutes.
+>Terraform requires a username and password for database access during deployment to securely connect the application. <br>
+>The process takes about 10 minutes.
 
 ## 🤝 Contributing
 
