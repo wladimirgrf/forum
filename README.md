@@ -102,19 +102,19 @@ npm run infra:plan
 
 **Deploy the entire Infrastructure**
 ```bash
+# The process takes about 10 minutes
 npm run infra:up
 ```
 
 >[!NOTE]
->Terraform requires a username and password for database access during deployment to securely connect the application. <br>
->The process takes about 10 minutes.
+>Terraform requires a username and password for database access during deployment to securely connect the application.
 
 ## 🤝 Contributing
 
 **Fork the repository and clone your fork**
 
 ```bash
-$ git clone fork-url && cd rentx
+$ git clone <fork-url> && cd forum
 ```
 
 **Create a branch for your edits**
