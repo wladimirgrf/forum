@@ -90,12 +90,12 @@ aws dynamodb create-table \
     --region us-east-1
 ```
 
-**Providers Initialization**
+**Initialize the Working Directory**
 ```bash
 npm run infra:prep
 ```
 
-**(OPTIONAL) Check the Execution Plan**
+**Check the Execution Plan (_OPTIONAL_)**
 ```bash
 npm run infra:plan
 ```
