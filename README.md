@@ -19,7 +19,7 @@ This project is a RESTful API designed for forum management. The use cases are c
 ![](.github/assets/api-docs.png)
 
 ## 🧱 ERM
-![](.github/assets/diagram.png)
+![](.github/assets/erm-diagram.png)
 
 ## ▶️ Getting started
 
@@ -70,7 +70,7 @@ $ npm run start:dev
 >Documentation available at `http://localhost:3333/docs`
 
 ## 🚀 Deployment
-We need to set up the resources for Terraform state synchronization.
+You need to set up the resources for Terraform state synchronization.
 
 **Create the Bucket**
 ```bash
