@@ -111,6 +111,20 @@ npm run infra:up
 >[!NOTE]
 >Terraform requires a username and password for database access during deployment to securely connect the application.
 
+## △ Prisma
+__Prisma migrations are automatically executed during deployment.__
+
+However, a point of attention is that this project uses private VPC and that Prisma does not support (_in the current version_) the execution of migrations via API. 
+
+In this case, I downloaded the engine of the current version that I am using into the project's deployment flow, and with a simple JS script, it is possible to use Lambda to execute the migrations within the VPC.
+
+>[!IMPORTANT]
+>So, if you want to run this project or another with the same structure, you need to pay attention to the engine version. Below is the link with the step-by-step guide to download the schema engine for the version of Prisma you are using:
+> https://github.com/prisma/prisma/discussions/14873
+
+Another link that is interesting to follow is the issue that addresses this topic in the Prisma repository. This feature may eventually be supported by the framework.
+https://github.com/prisma/prisma/issues/4703
+
 ## 🤝 Contributing
 
 **Fork the repository and clone your fork**
