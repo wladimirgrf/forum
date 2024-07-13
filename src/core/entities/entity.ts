@@ -24,8 +24,4 @@ export abstract class Entity<Props> {
 
     return false
   }
-
-  toJSON() {
-    return this.props
-  }
 }

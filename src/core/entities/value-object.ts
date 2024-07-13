@@ -16,8 +16,4 @@ export abstract class ValueObject<Props> {
 
     return JSON.stringify(vo.props) === JSON.stringify(this.props)
   }
-
-  toJSON() {
-    return this.props
-  }
 }
