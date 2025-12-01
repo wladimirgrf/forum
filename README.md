@@ -1,15 +1,13 @@
 # forum api
 
-<p float="left">
-  <img alt="terraform" src=".github/assets/terraform.svg" height="50"/> &nbsp;
-  <img alt="aws" src=".github/assets/aws.svg" height="50" /> &nbsp;
-  <img alt="nestjs" src=".github/assets/nestjs.svg" height="50"/> &nbsp;
-  <img alt="typescript" src=".github/assets/typescript.svg" height="50"/> &nbsp;
-  <img alt="vitest" src=".github/assets/vitest.svg" height="50"/> &nbsp;
-  <img alt="prisma" src=".github/assets/prisma.svg" height="50"/> &nbsp;
-  <img alt="docker" src=".github/assets/docker.svg" height="50"/> &nbsp;
-  <img alt="swagger" src=".github/assets/swagger.svg" height="50"/> 
-</p>
+![Terraform](https://img.shields.io/badge/Terraform-7B42BC?logo=terraform&logoColor=white)
+![AWS](https://img.shields.io/badge/AWS-FF9900?logo=amazonaws&logoColor=white)
+![NestJS](https://img.shields.io/badge/NestJS-E0234E?logo=nestjs&logoColor=white)
+![TypeScript](https://img.shields.io/badge/TypeScript-3178C6?logo=typescript&logoColor=white)
+![Vitest](https://img.shields.io/badge/Vitest-6E9F18?logo=vitest&logoColor=white)
+![Prisma](https://img.shields.io/badge/Prisma-2D3748?logo=prisma&logoColor=white)
+![Docker](https://img.shields.io/badge/Docker-2496ED?logo=docker&logoColor=white)
+![Swagger](https://img.shields.io/badge/Swagger-85EA2D?logo=swagger&logoColor=black)
 
 ## 📃 Overview
 This project is a RESTful API designed for forum management. The use cases are centered around the fundamental elements of __questions__, __answers__, and __comments__. The entire application is built following SOLID principles, clean architecture, and domain event patterns.
