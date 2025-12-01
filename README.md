@@ -15,10 +15,10 @@ This project is a RESTful API designed for forum management. The use cases are c
 ## ☁️ Infrastructure
 ![](.github/assets/infra.jpg)
 
-## ⚙️ Services
+## 🔌 RESTful API with OpenAPI
 ![](.github/assets/api-docs.png)
 
-## 🧱 ERM
+## 🗄️ Database Design
 ![](.github/assets/erm-diagram.png)
 
 ## ▶️ Getting started
